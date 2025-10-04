@@ -3,7 +3,8 @@ description: "Get the value of an environment variable"
 inputs:
   repo:
     description: "The repository to get the environment variable from"
-    required: true
+    required: false
+    default: ${{ github.repository }}
   env_name:
     description: "The name of the environment"
     required: true
