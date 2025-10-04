@@ -13,8 +13,8 @@ if [ -n "$var_count" ] && [ "$var_count" -gt 0 ]; then
     echo "$ENV_VARS" | jq -r '.[]|"\(.name)=\(.value)"' >> $GITHUB_ENV  
 
     if [ $FILE_TYPE == "env" ]; then
-        echo "$ENV_VARS" | jq -r '.[]|"\(.name)=\(.value)"' > .env
-        echo ".env file is created"
+        echo "$ENV_VARS" | jq -r '.[]|"\(.name)=\(.value)"' > env_var.txt
+        echo "env_var.txt file is created"
     fi
 else
     echo "Zero variables retrieved."
