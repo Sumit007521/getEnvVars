@@ -18,7 +18,7 @@ async function run() {
       env: {
         ...process.env,
         REPO: repo,
-        ENV_NAME: envName,
+        ENV_NAMES: envName,
         GH_TOKEN: ghToken,
         FILE_TYPE: fileType,
       }
