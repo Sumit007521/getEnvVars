@@ -1,28 +1,25 @@
 #!/bin/bash
 
 echo "My Repo: $REPO"
-echo "Environment Name: $ENV_NAME"
 
-ENV_ARRAY=($(echo "$ENV_NAME" | tr ',' ' '))
+ENV_ARRAY=($(echo "$ENV_NAMES" | tr ',' ' '))
 envCount=$(echo "${#ENV_ARRAY[@]}")
 
 for ENV in "${ENV_ARRAY[@]}"; do
-    echo "Environment: $ENV"
+    echo "Environment Name: $ENV"
+    ENV_VARS=$(gh variable list --json name,value -R $REPO -e $ENV) 
+    echo "$ENV_VARS" >> "$ENV.json"
+    var_count=$(cat "$ENV.json" | jq 'length')
+
+    if [ -n "$var_count" ] && [ "$var_count" -gt 0 ]; then
+        echo "Number of variables retrieved in $ENV: $var_count"
+        echo "$ENV_VARS" | jq -r '.[]|"\(.name)=\(.value)"' >> $GITHUB_ENV  
+
+        if [ $FILE_TYPE == "env" ]; then
+            echo "$ENV_VARS" | jq -r '.[]|"\(.name)=\(.value)"' > "$ENV.txt"
+            echo "$ENV.txt file is created"
+        fi
+    else
+        echo "Zero variables retrieved in $ENV."
+    fi
 done
-
-# ENV_VARS=$(gh variable list --json name,value -R $REPO -e $ENV_NAME) 
-# echo "$ENV_VARS" >> env_var.json
-
-# var_count=$(cat env_var.json | jq 'length')
-
-# if [ -n "$var_count" ] && [ "$var_count" -gt 0 ]; then
-#     echo "Number of variables retrieved: $var_count"
-#     echo "$ENV_VARS" | jq -r '.[]|"\(.name)=\(.value)"' >> $GITHUB_ENV  
-
-#     if [ $FILE_TYPE == "env" ]; then
-#         echo "$ENV_VARS" | jq -r '.[]|"\(.name)=\(.value)"' > env_var.txt
-#         echo "env_var.txt file is created"
-#     fi
-# else
-#     echo "Zero variables retrieved."
-# fi
