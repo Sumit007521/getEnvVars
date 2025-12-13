@@ -15,8 +15,13 @@ for ENV in "${ENV_ARRAY[@]}"; do
         echo "Number of variables retrieved in $ENV: $var_count"
         echo "$ENV_VARS" | jq -r '.[]|"\(.name)=\(.value)"' >> $GITHUB_ENV  
 
-        if [ $FILE_TYPE == "env" ]; then
+        if [ $FILE_TYPE == "txt" ]; then
             echo "$ENV_VARS" | jq -r '.[]|"\(.name)=\(.value)"' > "$ENV.txt"
+            echo "$ENV.txt file is created"
+        fi
+
+        if [ $FILE_TYPE == "csv" ]; then
+            echo "$ENV_VARS" | jq -r '.[]|"\(.name)=\(.value)"' > "$ENV.csv"
             echo "$ENV.txt file is created"
         fi
     else
