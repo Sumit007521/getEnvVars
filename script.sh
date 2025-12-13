@@ -21,8 +21,8 @@ for ENV in "${ENV_ARRAY[@]}"; do
         fi
 
         if [ $FILE_TYPE == "csv" ]; then
-            echo "$ENV_VARS" | jq -r '.[]|"\(.name)=\(.value)"' > "$ENV.csv"
-            echo "$ENV.txt file is created"
+            echo "$ENV_VARS" | jq -r '.variables[] | "\(.name),\(.value)"' > "$ENV.csv"
+            echo "$ENV.csv file is created"
         fi
     else
         echo "Zero variables retrieved in $ENV."
