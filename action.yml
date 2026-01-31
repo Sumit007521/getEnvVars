@@ -1,5 +1,7 @@
 name: "Environment Variable Action"
 description: "Get the value of an environment variable"
+author: "Sonu Kumar"
+
 inputs:
   repo:
     description: "The repository to get the environment variable from"
@@ -19,6 +21,11 @@ inputs:
 runs:
   using: "node20"
   main: "index.js"
+
+branding:
+  icon: "settings"
+  color: "gray-dark"
+
 
 
     

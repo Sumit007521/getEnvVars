@@ -46,7 +46,7 @@ Use the action from the same repository (local action):
 - name: Get environment variables
   uses: Sumit007521/getEnvVars@v1
   with:
-    repo: "owner/repo"               # optional, defaults to current repo    
-    env_name: "development,staging"  # required, comma-separated for multiple
-    gh_token: ${{ secrets.GITHUB_TOKEN }}    # required
-    file_type: "json"                # optional, defaults to json
+    repo: "owner/repo"                      # optional, defaults to current repo    
+    env_name: "development,staging"         # required, comma-separated for multiple
+    gh_token: ${{ secrets.GITHUB_TOKEN }}   # required
+    file_type: "json"                       # optional, defaults to json
