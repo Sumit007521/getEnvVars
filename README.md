@@ -44,7 +44,7 @@ All inputs are defined in [`action.yml`](action.yml).
 Use the action from the same repository (local action):
 ```yaml
 - name: Get environment variables
-  uses: your-username/getEnvVars@main
+  uses: Sumit007521/getEnvVars@main
   with:
     repo: "owner/repo"               # optional, defaults to current repo    
     env_name: "development,staging"  # required, comma-separated for multiple
