@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "My Repo: $REPO"
+echo "Repository: $REPO"
 
 ENV_ARRAY=($(echo "$ENV_NAMES" | tr ',' ' '))
 envCount=$(echo "${#ENV_ARRAY[@]}")
